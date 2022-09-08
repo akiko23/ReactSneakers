@@ -1,0 +1,65 @@
+.boot_image {
+    border-radius: 4px;
+    transition: all .4s ease-in-out;
+}
+
+.boot_image:hover {
+    filter: contrast(84%);
+}
+
+.overflow-auto {
+    overflow: auto;
+}
+
+.card_title {
+    font-weight:500;
+}
+
+
+.circle {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    opacity: 0;
+    right: 0;
+    transition: 0.8s;
+}
+
+.boot:hover > .ad > .circle {
+    opacity: 1;
+    display: block;
+}
+
+.search_form {
+    width: 25%;
+}
+
+@media screen and(max-width: 1000px) {
+    .search_form {
+        width: 50%;
+    }
+}
+
+.prices {
+    width: 63%;
+}
+
+.boot {
+    flex-basis: 12em;
+    margin-left: 4em;
+    border-radius: 11px;
+    display: block;
+    cursor: pointer;
+}
+
+.fullPrice {
+    color: #6c757d;
+}
+
+.card_img {
+    border-radius: 15px;
+}
+
+.boot:hover {
+    transform: translateY(-6px);
+}

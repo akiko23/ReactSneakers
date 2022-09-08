@@ -1,0 +1,76 @@
+.overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.1);
+    z-index: 1;
+}
+
+.cartBlock {
+    position: page;
+    width: 25%;
+}
+
+.toHideCart {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 75%;
+    height: 100%;
+}
+
+
+.product_image_block {
+    height: 160px;
+    width: 204px;
+}
+
+.noProductsImage {
+    transform: rotate(-6deg);
+}
+
+.allCarts {
+    position: static;
+    margin-top: 20px;
+    overflow-y: scroll;
+    max-height: 75%;
+}
+
+@media screen and (max-width: 750px){
+    .cartBlock {
+        width: 50%;
+    }
+
+    .toHideCart {
+        width: 50%!important;
+    }
+
+    .bottomBlock {
+        width: 50%!important;
+    }
+}
+
+.allCards {
+    position: initial;
+    scroll-margin-block: 23px;
+    max-height: 100%;
+}
+
+.cartProductBlock {
+    border-radius: 5px;
+}
+
+.cartProductBlock:hover {
+    transform: translateY(-5%);
+}
+
+.productLink {
+    cursor: pointer;
+}
+
+.bottomBlock {
+    position: absolute;
+    bottom: 2em;
+}
