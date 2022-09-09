@@ -9,8 +9,14 @@
 }
 
 .cartBlock {
-    position: page;
+    position: absolute;
     width: 25%;
+    animation: showRight 1s;
+}
+
+@keyframes showRight {
+    from{right: -100%}
+    to{right: 0}
 }
 
 .toHideCart {
@@ -72,5 +78,6 @@
 
 .bottomBlock {
     position: absolute;
+    width: 100%!important;
     bottom: 2em;
 }
