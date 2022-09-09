@@ -79,7 +79,7 @@ export default HeaderBlock
       <a className="nav__link p-2 text-light" href="my_app/src/shop_components/header/header#">Home</a>
       <a className="nav__link p-2 text-light" href="my_app/src/shop_components/header/header#">
               <img className="settings_logo" src={settings_logo} alt="ss" width="30" height="30" title="settings icons"></img>
-              <div className="d-inline ml-1">Settings</div>
+              <div className="d-inline ml-1">Favourites</div>
       </a>
       <a className="nav__link p-2 text-light" href="my_app/src/shop_components/header/header#">Enterprise</a>
       <a className="support nav__link p-2 text-light" href="my_app/src/shop_components/header/header#">Support</a>

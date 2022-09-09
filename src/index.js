@@ -7,7 +7,7 @@ import {
     Routes,
     Route,
 } from "react-router-dom";
-import CartProduct from "./shop_components/Cart/CartProduct/CartProduct";
+import CartProduct from "./shop_components/Cart/CartBlock/CartProduct/CartProduct";
 import CartBlock from "./shop_components/Cart/CartBlock/CartBlock";
 // import your route img too
 

@@ -1,5 +1,6 @@
 import './favourite.css'
 import React from "react";
+import {Link} from "react-router-dom";
 
 const Favourites = ({removeFavouriteItem, closeFavourites,  items = []}) => {
     const handleRemoveFromFavouritesClick = (id) => {
@@ -22,8 +23,10 @@ const Favourites = ({removeFavouriteItem, closeFavourites,  items = []}) => {
                     <div className="favouriteCarts pr-2">
                         {items.map((item) => (
                                 <div className='mx-auto favouriteBlock shadow my-4 cu-p'>
-                                    <img className='w-100 favouriteImage' src={item.imageUrl}
-                                         alt='prImg'/>
+                                    <Link to={`/${item.id}`}>
+                                        <img className='w-100 boot_image' src={item.imageUrl}
+                                             alt='prImg'/>
+                                    </Link>
                                     <div className="borderBLock w-100 p-2 d-flex justify-content-between my-auto flex-wrap">
                                         <div className="textBlock h-100 w-75">
                                             <p className="title">{item.title}</p>

@@ -5,7 +5,8 @@ import Header from "./shop_components/header/header";
 import CartBlock from "./shop_components/Cart/CartBlock/CartBlock";
 import axios from "axios";
 import {Route, Routes, Link} from "react-router-dom";
-import Favourites from "./shop_components/Settings/Favourites";
+import Favourites from "./shop_components/Favourites/Favourites";
+import CardInfo from "./shop_components/CardInfo/CardInfo";
 
 
 const App = () => {

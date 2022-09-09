@@ -5,6 +5,18 @@
 
 .boot_image:hover {
     filter: contrast(84%);
+    cursor: pointer;
+}
+
+.price {
+    width: 50%;
+    text-align: center;
+    bottom: 17%;
+}
+
+.line {
+    width: 100%;
+    border: 1px solid;
 }
 
 .overflow-auto {
@@ -15,6 +27,19 @@
     font-weight:500;
 }
 
+.cardInfoFavourite {
+    position: absolute;
+    height: 40px;
+    opacity: 0;
+    width: 40px;
+    top: calc(2% + 2px);
+    left: calc(3% + 2px);
+    transition: opacity .4s ease-out;
+}
+
+.boot_image:hover > :last-child {
+    opacity: 1;
+}
 
 .circle {
     width: 40px;
@@ -54,6 +79,10 @@
 
 .fullPrice {
     color: #6c757d;
+}
+
+.max-300 {
+    max-width: 290px;
 }
 
 .card_img {

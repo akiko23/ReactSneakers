@@ -3,6 +3,8 @@ import React from "react";
 import logo from '../img/logo.svg'
 import axios from "axios";
 import './CardBlock.css'
+import {Route, Routes} from "react-router-dom";
+import CardInfo from "../CardInfo/CardInfo";
 
 const CardBlock = ({
                        onAddToCart,
@@ -64,6 +66,29 @@ const CardBlock = ({
 
     return (
         <>
+            <Routes>
+                {items.map((item) => (
+                        <Route path={`/${item.id}`} element={
+                                <CardInfo
+                                    inCart={isInCart}
+                                    onPlus={onAddToCart}
+                                    fullPrice={item.fullPrice}
+                                    addToFavourites={onAddToFavourites}
+                                    itemInFavourites={itemInFavourites}
+                                    deleteFromFavourites={onDeleteFromFavourites}
+                                    removeCartItem={removeCartItem}
+                                    id={item.id}
+                                    title={item.title}
+                                    imageUrl={item.imageUrl}
+                                    price={item.price}
+                                />
+                            }>
+
+                        </Route>
+                    )
+                )}
+            </Routes>
+
             <div className='col-sm-11 mx-auto mt-4'>
                 <div className='advert_image w-100'></div>
             </div>
