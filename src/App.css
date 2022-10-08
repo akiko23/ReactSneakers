@@ -3,7 +3,6 @@
 }
 
 
-
 .advert_image {
   background-image: url("https://penza-online.ru/upload/iblock/faf/111111.jpg");
   background-size: cover;
@@ -11,14 +10,8 @@
   border-radius: 25px;
 }
 
-body {
-  background: linear-gradient(#098ea8, lightseagreen);
-  padding-top: 4em;
-}
-
-
 .main_block {
-  border-radius: 23px;
+  overflow: clip;
 }
 
 .App-logo {

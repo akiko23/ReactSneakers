@@ -17,6 +17,29 @@
     z-index: 15;
 }
 
+.header {
+    top: 0;
+    width: 100%;
+}
+
+a {
+    text-decoration: none!important;
+}
+
+span  {
+    color: white;
+    transition: color .3s ease-in-out;
+}
+
+.fs-30 {
+    font-size: 30px;
+    margin-bottom: 0;
+}
+
+span:hover {
+    color: #d6d8db;
+}
+
 .cardInfoBlock > :first-child > :first-child {
     margin-top: auto;
     margin-bottom: auto;
@@ -47,12 +70,13 @@
     z-index: 1;
 }
 
-.closedCardInfo {
+.closedCardInfoBlock {
     font-size: calc(16px + 1.2vw);
     font-weight: 700;
     margin-bottom: 160px;
     position: relative;
     animation: closeCardInfo 1s;
+    animation-fill-mode: forwards;
 }
 
 @keyframes showLeft {
@@ -65,8 +89,42 @@
     to {left:-100%;}
 }
 
+.favourite_item_image{
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%!important;
+    height: 50%!important;
+}
 
-.favouriteBlock {
+.favourite_item_name{
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.favourite_item_info{
+    text-align: start;
+}
+
+.favouriteItems{
+    display: flex;
+    flex: 1;
+    flex-wrap: wrap;
+    gap: 2.6vw;
+}
+
+.favourite_item{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    max-width: 200px;
+    max-height: 500px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.favourite {
     border-radius: 20px;
 }
 

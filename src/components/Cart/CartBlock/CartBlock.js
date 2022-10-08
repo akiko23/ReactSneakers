@@ -1,9 +1,8 @@
 import '../cart.css'
 import CartProduct from "./CartProduct/CartProduct";
 import React from "react";
-import shoppingCart from '../../img/shoppingСart.png'
+import shoppingCart from '../../resources/img/shoppingСart.png'
 import {Link, Route, Routes} from "react-router-dom";
-import CardInfo from "../../CardInfo/CardInfo";
 
 const CartBlock = ({cartClick, removeCartItem, items = [], setResult}) => {
     const [allPrice, setAllPrice] = React.useState([])

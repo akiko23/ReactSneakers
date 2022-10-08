@@ -1,26 +1,18 @@
 import './App.css';
 import React from "react";
-import CardBlock from "./shop_components/CardGrid/CardBlock";
-import Header from "./shop_components/header/header";
-import CartBlock from "./shop_components/Cart/CartBlock/CartBlock";
+import CartBlock from "./components/Cart/CartBlock/CartBlock";
 import axios from "axios";
-import {Route, Routes, Link} from "react-router-dom";
-import Favourites from "./shop_components/Favourites/Favourites";
-import CardInfo from "./shop_components/CardInfo/CardInfo";
+import {Route, Routes} from "react-router-dom";
+import Favourites from "./components/Favourites/Favourites";
+import Authorisation from "./components/User/Authorisation/Authorisation";
+import HomePage from "./components/HomePage/HomePage";
 
 
 const App = () => {
-    const [cartClick, setCartOpened] = React.useState(false)
     const [cartItems, setCartItems] = React.useState([]);
-
-    const [showFavourites, setShowFavourites] = React.useState(false);
     const [favouriteItems, setFavouriteItems] = React.useState([]);
 
     const [allPrice, setAllPrice] = React.useState(0);
-
-    const handleCartClick = () => {
-        setCartOpened(true);
-    }
 
     const addToCart = (obj) => {
         try{
@@ -44,18 +36,32 @@ const App = () => {
 
     const removeCartItem = (id) => {
         try{
-            axios.delete(`https://6305daeadde73c0f844cf627.mockapi.io/items/cart/${id}`)
-            setCartItems((prev) => prev.filter((item) => item.id !== id))
+            axios.delete(`https://6305daeadde73c0f844cf627.mockapi.io/items/cart/${id}`).then(
+                () => setCartItems((prev) => prev.filter((item) => item.id !== id))
+            )
+
         }catch (e) {
             console.log(e)
         }
-
-        //cartItems.splice(cartItems.indexOf(obj), 1);
     }
 
-    const openFavouritesClick = () => {
-        setShowFavourites(!showFavourites);
+    const setResult = (res) => {
+        setAllPrice(res)
     }
+
+    const trackScrollState = () => {
+        let currentHref = window.location.href;
+
+        const allowedPages = ['http://localhost:3000/', 'http://localhost:3000/cart']
+        let onAllowedPage = (currentHref === allowedPages[0]) || (currentHref === allowedPages[1]);
+
+        document.body.style.overflowY = onAllowedPage ? 'scroll' : 'clip';
+    }
+
+    document.body.addEventListener('click', () => {
+        trackScrollState();
+    })
+
 
     React.useEffect(() => {
         try{
@@ -67,8 +73,14 @@ const App = () => {
         }
     }, [])
 
-    const setResult = (result) => {
-        setAllPrice(result);
+    const removeFavouriteItem = (id) => {
+        try{
+            axios.delete(`https://6305daeadde73c0f844cf627.mockapi.io/items/favourites/${id}`).then(() => {
+                setFavouriteItems((prev) => prev.filter((item) => item.id !== id));
+            })
+        }catch (e) {
+            console.log(e)
+        }
     }
 
     const addToFavourites = (obj={}) => {
@@ -82,37 +94,18 @@ const App = () => {
         }
     }
 
-    const deleteFromFavourites = (id) => {
-        try{
-            axios.delete(`https://6305daeadde73c0f844cf627.mockapi.io/items/favourites/${id}`).then(() => {
-                setFavouriteItems((prev) => prev.filter((item) => item.id !== id));
-            })
-        }catch (e) {
-            console.log(e)
-        }
-    }
-
     return (
-        <div className='content_block'>
+        <>
             <Routes>
                 <Route
                     path='/cart'
-                    element={<CartBlock setResult={setResult} removeCartItem={removeCartItem} items={cartItems} passedClick={() => {
-                                setCartOpened(true)
-                            }} />}>
+                    element={<CartBlock setResult={setResult} removeCartItem={removeCartItem} items={cartItems}/>}>
                 </Route>
+                <Route path='/auth' element={<Authorisation />}></Route>
+                <Route path='/favourites' element={<Favourites removeFavouriteItem={removeFavouriteItem} items={favouriteItems} />}></Route>
             </Routes>
-            {showFavourites ? <Favourites showFavourites={showFavourites} removeFavouriteItem={deleteFromFavourites} items={favouriteItems} closeFavourites={() => {setShowFavourites(!showFavourites)}} /> : null}
-            <div className='main_block p-0 mx-auto col-sm-11 bg-light'>
-                <Header allPrice={allPrice ? allPrice : 0} openFavouritesClick={openFavouritesClick} iconClick={cartClick} openCartClick={handleCartClick} />
-                <CardBlock itemsInCart={cartItems} onAddToCart={addToCart}
-                           removeCartItem={removeCartItem}
-                           onAddToFavourites={addToFavourites}
-                           onDeleteFromFavourites={deleteFromFavourites}
-                           favouriteItems={favouriteItems}
-                />
-            </div>
-        </div>
+            <HomePage cartItems={cartItems} addToCart={addToCart} removeCartItem={removeCartItem} removeFavouriteItem={removeFavouriteItem} addToFavourites={addToFavourites} favouriteItems={favouriteItems} />
+        </>
 
     );
 }

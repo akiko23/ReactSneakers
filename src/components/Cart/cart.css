@@ -8,6 +8,17 @@
     z-index: 1;
 }
 
+.overlay-white {
+    position: fixed;
+    overflow: scroll;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background-color: white;
+    z-index: 1;
+}
+
 .cartBlock {
     position: absolute;
     width: 25%;
@@ -46,7 +57,7 @@
 
 @media screen and (max-width: 750px){
     .cartBlock {
-        width: 50%;
+        width: 100%;
     }
 
     .toHideCart {

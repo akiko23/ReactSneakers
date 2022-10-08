@@ -1,50 +1,40 @@
 import './favourite.css'
 import React from "react";
 import {Link} from "react-router-dom";
+import Header from "../Header/Header";
 
-const Favourites = ({removeFavouriteItem, closeFavourites,  items = []}) => {
+const Favourites = ({removeFavouriteItem, items = []}) => {
     const handleRemoveFromFavouritesClick = (id) => {
         removeFavouriteItem(id);
     }
     return (
-        <div className="overlay pb-5">
-            <main className='p-3 settingsBlock col-sm-8'>
-                <div className="text-center mb-4">
-                    <a href="#" className="" onClick={closeFavourites}>
-                        <img
-                            src={'https://cdn-icons-png.flaticon.com/512/2732/2732657.png'}
-                            width={40}
-                            height={40}
-                            alt=''/>
-                    </a>
-                    <h3 className='mt-2' style={{color: '#eee'}}>Here you can see your favourites &#128149;</h3>
-                </div>
-                <div className="col-sm-10 mx-auto d-flex justify-content-center my-auto h-50">
-                    <div className="favouriteCarts pr-2">
-                        {items.map((item) => (
-                                <div className='mx-auto favouriteBlock shadow my-4 cu-p'>
-                                    <Link to={`/${item.id}`}>
-                                        <img className='w-100 boot_image' src={item.imageUrl}
-                                             alt='prImg'/>
-                                    </Link>
-                                    <div className="borderBLock w-100 p-2 d-flex justify-content-between my-auto flex-wrap">
-                                        <div className="textBlock h-100 w-75">
-                                            <p className="title">{item.title}</p>
-                                            <div className="price"><b>ЦЕНА: </b>{item.price}</div>
+        <>
+            <div className="text-center overlay-white">
+                <Header/>
+                <div className="favouriteItems px-5 mt-5">
+                    {items.map((item) => (
+                            <div className='favourite_item shadow'>
+                                <Link to={`/${item.id}`}><img className='w-100 boot_image' height={156} src={item.imageUrl} alt=""/></Link>
+                                <div className="favourite_item_info pl-2 pb-2">
+                                    <p className='pt-1 px-1 flex-wrap card_title'>
+                                        {item.title.toUpperCase()}
+                                    </p>
+                                    <div className="d-flex justify-content-between ml-1">
+                                        <div className="mb-1 prices">
+                                            <div className="text-muted">ЦЕНА:</div>
+                                            <section className='price_with_discount d-flex justify-content-between'>
+                                                <div className='text-danger font-weight-bold'>{item.price} ₽</div>
+                                                <strike className="fullPrice font-weight-light">{item.fullPrice} ₽</strike>
+                                            </section>
                                         </div>
-                                        <a onClick={() => handleRemoveFromFavouritesClick(item.id)} href='#'
-                                           className='productDeleteLink my-auto p-2'>
-                                            <img src='https://cdn-icons-png.flaticon.com/512/2732/2732657.png' width={20}
-                                                 height={20} alt=''/>
-                                        </a>
-                                    </div>
+                                        </div>
                                 </div>
-                            )
-                        )}
-                    </div>
+                            </div>
+                        )
+                    )}
                 </div>
-            </main>
-        </div>
+            </div>
+        </>
     )
 
 }

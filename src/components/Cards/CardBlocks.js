@@ -1,21 +1,22 @@
-import CardModel from "./card/CardModel";
+import CardModel from "./CardModel/CardModel";
 import React from "react";
-import logo from '../img/logo.svg'
 import axios from "axios";
-import './CardBlock.css'
+import './cards.css'
 import {Route, Routes} from "react-router-dom";
-import CardInfo from "../CardInfo/CardInfo";
+import CardInfo from "../Cart/CartBlock/CardInfo/CardInfo";
 
-const CardBlock = ({
+const CardBlocks = ({
                        onAddToCart,
                        removeCartItem,
-                       itemsInCart,
+                       cartItems,
                        favouriteItems,
                        onAddToFavourites,
-                       onDeleteFromFavourites
+                        removeFavouriteItem
                    }) => {
     const [items, setItems] = React.useState([]);
     const [searchValue, setSearchValue] = React.useState('');
+
+    const [currentImg, setCurrentImg] = React.useState(1)
 
     const handleClearSearchClick = () => {
         setSearchValue('')
@@ -42,7 +43,7 @@ const CardBlock = ({
 
     const isInCart = (id) => {
         let boolRes = false;
-        itemsInCart.map(
+        cartItems.map(
             (item) => {
                 if (item.id === id) {
                     boolRes = true;
@@ -64,33 +65,76 @@ const CardBlock = ({
         return res;
     }
 
+    const plusSlides = (val) => {
+        if (currentImg <= 3) {
+            setCurrentImg(currentImg + val);
+        }
+        if (currentImg <= 0) {
+            setCurrentImg(3);
+        }
+        if (currentImg > 3) {
+            setCurrentImg(1);
+        }
+    }
+
+    const currentSlide = (val) => {
+        const dots = document.getElementsByClassName('dot')
+
+        if (0 < currentImg <= 3) {
+            for (let dot of dots) {
+                if (parseInt(dot.getAttribute("data-n")) === currentImg) {
+                    dot.classList.add('activeSlide')
+                } else {
+                    dot.classList.remove('activeSlide')
+                }
+            }
+            return (val === currentImg)
+        }
+    }
+
     return (
         <>
             <Routes>
                 {items.map((item) => (
-                        <Route path={`/${item.id}`} element={
-                                <CardInfo
-                                    inCart={isInCart}
-                                    onPlus={onAddToCart}
-                                    fullPrice={item.fullPrice}
-                                    addToFavourites={onAddToFavourites}
-                                    itemInFavourites={itemInFavourites}
-                                    deleteFromFavourites={onDeleteFromFavourites}
-                                    removeCartItem={removeCartItem}
-                                    id={item.id}
-                                    title={item.title}
-                                    imageUrl={item.imageUrl}
-                                    price={item.price}
-                                />
-                            }>
+                        <Route path={`${item.id}`} element={
+                            <CardInfo
+                                inCart={isInCart}
+                                onPlus={onAddToCart}
+                                fullPrice={item.fullPrice}
+                                addToFavourites={onAddToFavourites}
+                                itemInFavourites={itemInFavourites}
+                                deleteFromFavourites={removeFavouriteItem}
+                                removeCartItem={removeCartItem}
+                                id={item.id}
+                                title={item.title}
+                                imageUrl={item.imageUrl}
+                                price={item.price}
+                            />
+                        }>
 
                         </Route>
                     )
                 )}
             </Routes>
-
-            <div className='col-sm-11 mx-auto mt-4'>
-                <div className='advert_image w-100'></div>
+            <div className='mt-4 col-sm-12'>
+                <div className="slideshow-container">
+                    {currentSlide(1) ? <div data-n={3} className="mySlides text-center fade">
+                        <div className="numberText">3/3</div>
+                        <div className="text">text</div>
+                    </div> : undefined}
+                </div>
+                <br/>
+                <div style={{textAlign: "center"}}>
+                <span data-n={1} className="dot" onClick={() => {
+                    setCurrentImg(1)
+                }}></span>
+                    <span data-n={2} className="dot" onClick={() => {
+                        setCurrentImg(2)
+                    }}></span>
+                    <span data-n={3} className="dot" onClick={() => {
+                        setCurrentImg(3)
+                    }}></span>
+                </div>
             </div>
             <div className="mx-auto col-sm-11 d-flex mt-5 mb-3 justify-content-between">
                 <h3 className='mr-3'>{setFoundedStatus(searchValue.trim())}</h3>
@@ -103,7 +147,8 @@ const CardBlock = ({
                     {searchValue ?
                         <a onClick={handleClearSearchClick} style={{cursor: "pointer"}}
                            className='disableSearchBlock position-relative'>
-                            <img src='https://cdn-icons-png.flaticon.com/512/2723/2723639.png' width={20} height={20}
+                            <img src='https://cdn-icons-png.flaticon.com/512/2723/2723639.png' width={20}
+                                 height={20}
                                  alt="closeSearch"/>
                         </a> : undefined}
                 </form>
@@ -112,13 +157,13 @@ const CardBlock = ({
                 {items.filter(item => item.title.toString().toLowerCase().trim().includes(searchValue.toString().toLowerCase().trim())).map((item) =>
                     (
                         <CardModel
-                            key={item.title}
+                            key={item.id}
                             inCart={isInCart}
                             onPlus={onAddToCart}
                             fullPrice={item.fullPrice}
                             addToFavourites={onAddToFavourites}
                             itemInFavourites={itemInFavourites}
-                            deleteFromFavourites={onDeleteFromFavourites}
+                            deleteFromFavourites={removeFavouriteItem}
                             removeCartItem={removeCartItem}
                             id={item.id}
                             title={item.title}
@@ -133,4 +178,4 @@ const CardBlock = ({
 }
 
 
-export default CardBlock
+export default CardBlocks

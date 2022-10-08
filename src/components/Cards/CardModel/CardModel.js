@@ -1,7 +1,7 @@
-import './card.css'
+import '../cards.css'
 import React from "react";
-import favouriteBefore from '../../img/favourite-before.png';
-import favouriteAfter from '../../img/favorite-after.png';
+import favouriteBefore from '../../resources/img/favourite-before.png';
+import favouriteAfter from '../../resources/img/favorite-after.png';
 import {Link} from "react-router-dom";
 
 const CardModel = ({title, imageUrl, price, onPlus, fullPrice, removeCartItem, itemInFavourites, id, inCart, deleteFromFavourites, addToFavourites}) => {

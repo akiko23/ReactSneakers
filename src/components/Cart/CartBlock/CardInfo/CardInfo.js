@@ -1,7 +1,6 @@
-import Header from "../header/header";
 import React from "react";
 import {Link} from "react-router-dom";
-import fv from '../img/favorite-after.png'
+import fv from '../../../resources/img/favorite-after.png'
 
 const CardInfo = ({title, imageUrl, price, onPlus, fullPrice, removeCartItem, itemInFavourites, id, inCart, deleteFromFavourites, addToFavourites}) => {
     const [itemInCart, setItemInCart] = React.useState(false);
@@ -45,6 +44,12 @@ const CardInfo = ({title, imageUrl, price, onPlus, fullPrice, removeCartItem, it
         deleteFromFavourites(id);
     }
 
+    const handleVisualClickOnClose = () => {
+        let cardInfoBlock = document.querySelector('.mainSelection').firstChild;
+        cardInfoBlock.classList.replace('cardInfoBlock', 'closedCardInfoBlock')
+    }
+
+
     return (
         <div className="overlay">
             <div className='mainSelection text-dark w-100 justify-content-center'>
@@ -74,7 +79,7 @@ const CardInfo = ({title, imageUrl, price, onPlus, fullPrice, removeCartItem, it
                             </div>
                         </section>
                     </div>
-                        <Link to='/'>
+                        <Link to='/' className='linkToMainPageFromCardInfo' onClick={handleVisualClickOnClose}>
                             <a className='backToHomePage'>
                                 <img src="https://cdn-icons-png.flaticon.com/512/2732/2732657.png" width="25" height="25"
                                      alt=""/>

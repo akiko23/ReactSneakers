@@ -19,9 +19,6 @@
     border: 1px solid;
 }
 
-.overflow-auto {
-    overflow: auto;
-}
 
 .card_title {
     font-weight:500;
@@ -59,6 +56,10 @@
     width: 25%;
 }
 
+.fade {
+    opacity: 1!important;
+}
+
 @media screen and(max-width: 1000px) {
     .search_form {
         width: 50%;
@@ -75,6 +76,7 @@
     border-radius: 11px;
     display: block;
     cursor: pointer;
+    transition: all .3s ease-in-out;
 }
 
 .fullPrice {
@@ -91,4 +93,28 @@
 
 .boot:hover {
     transform: translateY(-6px);
+}
+
+.advert_image {
+    background-image: url("https://penza-online.ru/upload/iblock/faf/111111.jpg");
+    background-size: cover;
+    height: 35em;
+    border-radius: 25px;
+}
+
+.mySlides {
+    height: 70vh;
+    width: 70vh;
+    border-radius: 50%;
+    margin: auto;
+    background-image: url("https://cdn.sanity.io/images/c1chvb1i/production/263bfff40f54289195d208c9dec2a3d1b48adfc8-1100x735.jpg/CRISP-BLN-store.jpg");
+    background-position-x: center;
+    background-position-y: center;
+    background-origin: border-box;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.searchInput {
+    all: unset;
 }
