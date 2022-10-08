@@ -1,6 +1,6 @@
 import React from "react";
 import {Link} from "react-router-dom";
-import fv from '../../../resources/img/favorite-after.png'
+import fv from '../../../../resources/img/favorite-after.png'
 
 const CardInfo = ({title, imageUrl, price, onPlus, fullPrice, removeCartItem, itemInFavourites, id, inCart, deleteFromFavourites, addToFavourites}) => {
     const [itemInCart, setItemInCart] = React.useState(false);
@@ -9,7 +9,7 @@ const CardInfo = ({title, imageUrl, price, onPlus, fullPrice, removeCartItem, it
     React.useEffect(() => {
         setItemInCart(inCart(id))
         setInFavourites(itemInFavourites(id))
-    })
+    }, [])
     // function sleep(ms) {
     //     return new Promise(resolve => setTimeout(resolve, ms));
     // }
@@ -48,7 +48,6 @@ const CardInfo = ({title, imageUrl, price, onPlus, fullPrice, removeCartItem, it
         let cardInfoBlock = document.querySelector('.mainSelection').firstChild;
         cardInfoBlock.classList.replace('cardInfoBlock', 'closedCardInfoBlock')
     }
-
 
     return (
         <div className="overlay">

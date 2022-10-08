@@ -1,4 +1,4 @@
-import s from '../../../../App.css'
+import s from '../../../App.css'
 import avatar from '../avatar.jpg'
 const ProfileBlock = () => {
     return (

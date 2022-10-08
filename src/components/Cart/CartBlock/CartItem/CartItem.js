@@ -1,10 +1,10 @@
 import '../../cart.css'
-import crossSign from '../../../resources/img/trash.png'
+import crossSign from '../../../../resources/img/trash.png'
 import React from "react";
 import {Link} from "react-router-dom";
 
 
-const CartProduct = ({price, title, prices, imageUrl, removeCartItem, getAllPrice, id}) => {
+const CartItem = ({price, title, prices, imageUrl, removeCartItem, getAllPrice, id}) => {
     let [count, setCount] = React.useState(1);
 
     React.useEffect(() => {
@@ -38,4 +38,4 @@ const CartProduct = ({price, title, prices, imageUrl, removeCartItem, getAllPric
     )
 }
 
-export default CartProduct
+export default CartItem

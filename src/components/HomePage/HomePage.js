@@ -1,5 +1,5 @@
 import Header from "../Header/Header";
-import CardBlocks from "../Cards/CardBlocks";
+import Cards from "../Cards/Cards";
 import React from "react";
 // import {useDispatch, useSelector} from "react-redux";
 
@@ -21,12 +21,12 @@ const HomePage = ({favouriteItems, addToFavourites, cartItems, removeCartItem, a
             {/*<button onClick={() => remCash(4)}>-</button>*/}
             {/*<h1>{cash}</h1>*/}
             <Header />
-            <CardBlocks cartItems={cartItems}
-                        onAddToCart={addToCart}
-                        removeCartItem={removeCartItem}
-                        onAddToFavourites={addToFavourites}
-                        removeFavouriteItem={removeFavouriteItem}
-                        favouriteItems={favouriteItems}
+            <Cards cartItems={cartItems}
+                   onAddToCart={addToCart}
+                   removeCartItem={removeCartItem}
+                   onAddToFavourites={addToFavourites}
+                   removeFavouriteItem={removeFavouriteItem}
+                   favouriteItems={favouriteItems}
             />
         </div>
     )

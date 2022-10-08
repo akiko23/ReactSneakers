@@ -81,6 +81,8 @@
 
 .fullPrice {
     color: #6c757d;
+    font-size: 14px;
+    font-weight: 600;
 }
 
 .max-300 {

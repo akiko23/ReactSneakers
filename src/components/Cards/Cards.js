@@ -1,18 +1,18 @@
-import CardModel from "./CardModel/CardModel";
+import CardItem from "./CardItem/CardItem";
 import React from "react";
 import axios from "axios";
 import './cards.css'
 import {Route, Routes} from "react-router-dom";
-import CardInfo from "../Cart/CartBlock/CardInfo/CardInfo";
+import CardInfo from "./CardItem/CardItemInfo/CardInfo";
 
-const CardBlocks = ({
-                       onAddToCart,
-                       removeCartItem,
-                       cartItems,
-                       favouriteItems,
-                       onAddToFavourites,
-                        removeFavouriteItem
-                   }) => {
+const Cards = ({
+                   onAddToCart,
+                   removeCartItem,
+                   cartItems,
+                   favouriteItems,
+                   onAddToFavourites,
+                   removeFavouriteItem
+               }) => {
     const [items, setItems] = React.useState([]);
     const [searchValue, setSearchValue] = React.useState('');
 
@@ -95,25 +95,28 @@ const CardBlocks = ({
     return (
         <>
             <Routes>
-                {items.map((item) => (
-                        <Route path={`${item.id}`} element={
-                            <CardInfo
-                                inCart={isInCart}
-                                onPlus={onAddToCart}
-                                fullPrice={item.fullPrice}
-                                addToFavourites={onAddToFavourites}
-                                itemInFavourites={itemInFavourites}
-                                deleteFromFavourites={removeFavouriteItem}
-                                removeCartItem={removeCartItem}
-                                id={item.id}
-                                title={item.title}
-                                imageUrl={item.imageUrl}
-                                price={item.price}
-                            />
-                        }>
+                <Route path={`:id`} element={
+                    items.map((item) => (
+                        <CardInfo
+                            key={item.id}
+                            inCart={isInCart}
+                            onPlus={onAddToCart}
+                            fullPrice={item.fullPrice}
+                            addToFavourites={onAddToFavourites}
+                            itemInFavourites={itemInFavourites}
+                            deleteFromFavourites={removeFavouriteItem}
+                            removeCartItem={removeCartItem}
+                            id={item.id}
+                            title={item.title}
+                            imageUrl={item.imageUrl}
+                            price={item.price}
+                        />
+                    ))
+                }>
 
-                        </Route>
-                    )
+                </Route>
+
+                )
                 )}
             </Routes>
             <div className='mt-4 col-sm-12'>
@@ -156,7 +159,7 @@ const CardBlocks = ({
             <div className='mt-5 d-flex mx-3 flex-wrap'>
                 {items.filter(item => item.title.toString().toLowerCase().trim().includes(searchValue.toString().toLowerCase().trim())).map((item) =>
                     (
-                        <CardModel
+                        <CardItem
                             key={item.id}
                             inCart={isInCart}
                             onPlus={onAddToCart}
@@ -178,4 +181,4 @@ const CardBlocks = ({
 }
 
 
-export default CardBlocks
+export default Cards

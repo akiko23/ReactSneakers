@@ -1,7 +1,7 @@
 import '../cart.css'
-import CartProduct from "./CartProduct/CartProduct";
+import CartItem from "./CartItem/CartItem";
 import React from "react";
-import shoppingCart from '../../resources/img/shoppingСart.png'
+import shoppingCart from '../../../resources/img/shoppingСart.png'
 import {Link, Route, Routes} from "react-router-dom";
 
 const CartBlock = ({cartClick, removeCartItem, items = [], setResult}) => {
@@ -35,11 +35,11 @@ const CartBlock = ({cartClick, removeCartItem, items = [], setResult}) => {
                         </div>
                         <div className="allCarts">
                             {items.map((obj) => (
-                                <CartProduct prices={prices} getAllPrice={getAllPrice}
-                                             id={obj.id}
-                                             removeCartItem={removeCartItem}
-                                             title={obj.title} price={obj.price}
-                                             imageUrl={obj.imageUrl}
+                                <CartItem prices={prices} getAllPrice={getAllPrice}
+                                          id={obj.id}
+                                          removeCartItem={removeCartItem}
+                                          title={obj.title} price={obj.price}
+                                          imageUrl={obj.imageUrl}
                                 />
                             ))}
                         </div>

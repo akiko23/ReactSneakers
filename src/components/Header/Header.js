@@ -1,6 +1,6 @@
-import logo from '../resources/img/logo.svg'
+import logo from '../../resources/img/logo.svg'
 import React from "react";
-import menu from '../resources/img/menu.png'
+import menu from '../../resources/img/menu.png'
 
 import {Link} from "react-router-dom";
 import './header.css'

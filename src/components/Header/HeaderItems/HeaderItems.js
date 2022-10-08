@@ -1,6 +1,6 @@
 import {Link} from "react-router-dom";
-import menu from "../../resources/img/menu.png";
-import favouriteAfter from "../../resources/img/favorite-after.png";
+import menu from "../../../resources/img/menu.png";
+import favouriteAfter from "../../../resources/img/favorite-after.png";
 import React from "react";
 
 const HeaderItems = (props) => {

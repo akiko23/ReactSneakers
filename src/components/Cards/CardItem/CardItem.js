@@ -1,25 +1,26 @@
 import '../cards.css'
 import React from "react";
-import favouriteBefore from '../../resources/img/favourite-before.png';
-import favouriteAfter from '../../resources/img/favorite-after.png';
+import favouriteBefore from '../../../resources/img/favourite-before.png';
+import favouriteAfter from '../../../resources/img/favorite-after.png';
 import {Link} from "react-router-dom";
 
-const CardModel = ({title, imageUrl, price, onPlus, fullPrice, removeCartItem, itemInFavourites, id, inCart, deleteFromFavourites, addToFavourites}) => {
-    const handleAddToCartClick = () => {
-        inCart(id);
-        onPlus({title, imageUrl, price, id});
+const CardItem = ({title, imageUrl, price, onPlus, fullPrice, removeCartItem, itemInFavourites, id, inCart, deleteFromFavourites, addToFavourites}) => {
+    const handleCartClick = () => {
+        if (inCart(id)) {
+            removeCartItem(id);
+        }
+        else{
+            onPlus({title, imageUrl, price, id});
+        }
     }
 
-    const handleRemoveFromCartClick = () => {
-        removeCartItem(id);
-    }
-
-    const handleAddToFavouritesClick = () => {
-        addToFavourites({id, imageUrl, title, price});
-    }
-
-    const handleRemoveFromFavouritesClick = () => {
-        deleteFromFavourites(id);
+    const handleFavouritesClick = () => {
+        if (itemInFavourites(id)) {
+            deleteFromFavourites(id);
+        }
+        else {
+            addToFavourites({id, imageUrl, title, price});
+        }
     }
 
     return (
@@ -32,7 +33,7 @@ const CardModel = ({title, imageUrl, price, onPlus, fullPrice, removeCartItem, i
                             </a>
                         </Link>
                     </div>
-                    <div className="circle py-2" onClick={itemInFavourites(id) ? handleRemoveFromFavouritesClick : handleAddToFavouritesClick}>
+                    <div className="circle py-2" onClick={handleFavouritesClick}>
                         <img width={30} height={31} src={itemInFavourites(id) ? favouriteAfter : 'https://cdn-icons-png.flaticon.com/512/7607/7607010.png'} alt='' />
                     </div>
                 </div>
@@ -49,7 +50,7 @@ const CardModel = ({title, imageUrl, price, onPlus, fullPrice, removeCartItem, i
                     </div>
                     <button
                         className={inCart(id) ? 'btn btn-success my-auto mr-1' : 'btn btn-secondary my-auto mr-1'}
-                        onClick={inCart(id) ? handleRemoveFromCartClick : handleAddToCartClick}
+                        onClick={handleCartClick}
                     >
                         {inCart(id) ? '✓' : '+'}
                     </button>
@@ -59,4 +60,4 @@ const CardModel = ({title, imageUrl, price, onPlus, fullPrice, removeCartItem, i
     )
 }
 
-export default CardModel
+export default CardItem
